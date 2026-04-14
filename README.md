@@ -1,6 +1,6 @@
-# MiCaja - Gestión Contable Minimalista
+# MiCaja - Gestión Contable 
 
-MiCaja es una aplicación de escritorio diseñada para la gestión contable simplificada de pequeños negocios (especialmente del sector Fast Food). Ofrece una interfaz moderna, oscura y minimalista para el registro de ingresos y egresos, visualización de métricas clave y persistencia de datos local mediante Excel.
+MiCaja es una aplicación de escritorio diseñada para la gestión contable simplificada de pequeños negocios. Ofrece una interfaz moderna, oscura y minimalista para el registro de ingresos y egresos, visualización de métricas clave y persistencia de datos local mediante Excel.
 
 ## 🚀 Características Principales
 
