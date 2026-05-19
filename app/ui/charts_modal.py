@@ -36,7 +36,7 @@ class KPIModal(ctk.CTkToplevel):
 
         # Métrica 1: Ingresos vs Egresos (Barras)
         ingresos, egresos = self.controller.get_kpi_ingresos_egresos()
-        ax1.bar(["Ingresos", "Egresos"], [ingresos, egresos], color=["#00c896", "#ff4c4c"])
+        ax1.bar(["Ingresos", "Egresos"], [ingresos, egresos], color=["#00D09C", "#FF5C5C"])
         ax1.set_title("Balance Operativo", color="white", fontsize=12, fontweight="bold")
         ax1.tick_params(colors="lightgray")
         # Quitar bordes innecesarios
@@ -58,7 +58,7 @@ class KPIModal(ctk.CTkToplevel):
         if top_prod:
             labels = [p[0] for p in top_prod]
             vals = [p[1] for p in top_prod]
-            ax3.barh(labels, vals, color="#00c896")
+            ax3.barh(labels, vals, color="#00D09C")
             ax3.set_title("Top Productos Más Vendidos", color="white", fontsize=12, fontweight="bold")
             ax3.tick_params(colors="lightgray")
             for spine in ax3.spines.values(): spine.set_visible(False)

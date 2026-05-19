@@ -3,9 +3,9 @@ from app.controllers.main_controller import MainController
 from app.ui.main_window import MainWindow
 
 def main():
-    # Estética de la aplicación
     ctk.set_appearance_mode("dark")
-    ctk.set_default_color_theme("green")
+    ctk.set_default_color_theme("dark-blue")
+    ctk.set_widget_scaling(1.0)
 
     controller = MainController()
     app = MainWindow(controller)

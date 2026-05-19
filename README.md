@@ -1,67 +1,95 @@
-# MiCaja - Gestión Contable Minimalista
+# MiCaja - Gestión Financiera Minimalista 🚀
 
-MiCaja es una aplicación de escritorio diseñada para la gestión contable simplificada de pequeños negocios (especialmente del sector Fast Food). Ofrece una interfaz moderna, oscura y minimalista para el registro de ingresos y egresos, visualización de métricas clave y persistencia de datos local mediante Excel.
+MiCaja es una solución integral de escritorio diseñada para la gestión contable y financiera de pequeños negocios. Con una interfaz moderna, oscura y de alto rendimiento, permite a los propietarios tomar el control total de sus flujos de caja, catálogos de productos y métricas operativas sin la complejidad de sistemas ERP pesados.
 
-## 🚀 Características Principales
+---
 
-- **Panel de Control Intuitivo**: Visualización inmediata del saldo actual, ingresos y egresos totales.
-- **Registro Rápido**: Modales optimizados para ingresar ventas o registrar gastos en segundos.
-- **Gestión de Catálogo**: Sistema de productos y servicios preestablecidos para agilizar la entrada de datos.
-- **Métricas Visuales (KPIs)**: Gráficas interactivas que muestran el balance operativo, distribución de costos y top de ventas.
-- **Persistencia en Excel**: Todos los datos se guardan en un archivo `.xlsx` local, permitiendo la portabilidad y fácil manipulación externa de la información.
-- **Modo Offline**: No requiere conexión a internet para funcionar.
+## ✨ Características Destacadas
 
-## 🛠️ Tecnologías Utilizadas
+### 📊 Dashboard Inteligente
+- **Métricas en Tiempo Real**: Visualización instantánea de Saldo Actual, Ingresos y Egresos con tendencias comparativas.
+- **Gráficas Operativas**: Balance semanal interactivo renderizado con Matplotlib para identificar picos de actividad.
+- **Top de Productos**: Ranking visual de los artículos que más ingresos generan al negocio.
+- **Acceso Rápido**: Botones directos para el ingreso de ventas y registro de gastos.
 
-- **Lenguaje**: Python 3.x
-- **Interfaz Gráfica**: [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) (una evolución estética de Tkinter).
-- **Procesamiento de Datos**: [Pandas](https://pandas.pydata.org/) y [OpenPyXL](https://openpyxl.readthedocs.io/).
-- **Visualización**: [Matplotlib](https://matplotlib.org/).
-- **Empaquetado**: [PyInstaller](https://pyinstaller.org/).
+### 💼 Gestión de Transacciones
+- **Historial Completo**: Tabla avanzada con filtros por tipo de operación y búsqueda global dinámica.
+- **Edición Ágil**: Sistema de doble clic para modificar registros existentes y tecla *Suprimir* para eliminaciones rápidas.
+- **Categorización Automática**: Uso de insignias visuales (Badges) para diferenciar ingresos de egresos de un vistazo.
 
-## 📂 Estructura del Proyecto
+### 📦 Catálogo y Productos
+- **Control de Inventario**: Vista dedicada para gestionar productos de venta e ítems de gasto.
+- **Valor del Catálogo**: Cálculo automático del valor referencial de tus productos disponibles.
+- **Indicadores de Estado**: Barras de progreso visuales para monitorear el estado de los ítems en el catálogo.
+
+### 🛠️ Configuración y Personalización
+- **Identidad del Negocio**: Personalización del nombre de la empresa y símbolo de moneda.
+- **Arquitectura Robusta**: Persistencia garantizada en Excel (`.xlsx`), permitiendo que tus datos sean tuyos y portátiles.
+
+---
+
+## 🏗️ Arquitectura del Proyecto
+
+El proyecto sigue un patrón **MVC (Modelo-Vista-Controlador)** desacoplado para facilitar el mantenimiento y la escalabilidad:
 
 ```text
 MiCaja/
 ├── app/
-│   ├── controllers/    # Lógica de negocio y puentes entre UI y Modelos.
-│   ├── models/         # Gestión de persistencia y acceso a datos (Excel).
-│   └── ui/             # Componentes de la interfaz de usuario y modales.
-├── data/               # Directorio donde se almacena la base de datos Excel.
-├── build.cmd           # Script para generar el ejecutable de Windows.
-├── main.py             # Punto de entrada de la aplicación.
-└── requirements.txt    # Dependencias del proyecto.
+│   ├── controllers/    # Lógica de negocio y coordinación entre datos y UI.
+│   ├── models/         # Gestión de persistencia (ExcelManager) y validaciones.
+│   └── ui/             # Interfaz de Usuario modular:
+│       ├── components/ # Widgets reutilizables (Sidebar, TopBar, KPI Cards, Badges).
+│       ├── views/      # Pantallas principales (Dashboard, Transactions, Products, Reports, Settings).
+│       ├── theme.py    # Definición global de colores, fuentes y espaciado.
+│       └── modals.py   # Ventanas emergentes interactivas para formularios.
+├── data/               # Directorio local de la base de datos Excel.
+├── main.py             # Punto de entrada optimizado.
+└── requirements.txt    # Dependencias del ecosistema Python.
 ```
 
-## ⚙️ Cómo Funciona
+---
 
-### 1. Modelo de Datos
-La aplicación utiliza un archivo llamado `micaja_data.xlsx` ubicado en la carpeta `data/`. Este archivo contiene tres hojas principales:
-- **Transacciones**: Historial completo de movimientos con ID, fecha, tipo, item, cantidad y montos.
-- **Catalogo**: Lista de productos/servicios con sus precios sugeridos.
-- **Configuracion**: Ajustes generales como el nombre del negocio y el símbolo de moneda.
+## 🛠️ Tecnologías Utilizadas
 
-### 2. Flujo de Usuario
-- Al iniciar, el `ExcelManager` verifica la existencia del archivo de datos. Si no existe, lo inicializa con valores base.
-- El usuario puede registrar un **Ingreso** (selecciona un producto del catálogo, define cantidad y el sistema calcula el total) o un **Egreso** (gastos operativos, nómina, etc.).
-- La tabla de movimientos en la ventana principal muestra los últimos 20 registros, permitiendo editarlos con doble click o eliminarlos con la tecla `Suprimir`.
-
-### 3. Visualización de Resultados
-Al pulsar en **Métricas**, se genera un panel dinámico usando Matplotlib que analiza los datos en tiempo real para mostrar:
-- Balances operativos (Barras).
-- Estructura de gastos por categoría (Pastel).
-- Productos más vendidos por volumen de ingresos.
-
-## 📦 Instalación y Ejecución
-
-### Para desarrolladores:
-1. Clonar el repositorio.
-2. Crear un entorno virtual: `python -m venv .venv`
-3. Instalar dependencias: `pip install -r requirements.txt`
-4. Ejecutar: `python main.py`
-
-### Para generar el Ejecutable (.exe):
-Simplemente ejecute el archivo `build.cmd`. El resultado aparecerá en la carpeta `dist/MiCaja`.
+- **Core**: Python 3.10+
+- **UI Framework**: [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) - Interfaz moderna con soporte nativo de modo oscuro.
+- **Data Engine**: [Pandas](https://pandas.pydata.org/) & [OpenPyXL](https://openpyxl.readthedocs.io/) - Procesamiento eficiente de hojas de cálculo.
+- **Analytics**: [Matplotlib](https://matplotlib.org/) - Generación de gráficas embebidas en la UI.
 
 ---
-*Desarrollado por Leonardo Meza*
+
+## 🚀 Instalación y Uso
+
+### Configuración del Entorno
+1. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/tu-usuario/micaja.git
+   cd micaja
+   ```
+2. **Crear entorno virtual**:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # En Windows: .venv\Scripts\activate
+   ```
+3. **Instalar dependencias**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Lanzar aplicación**:
+   ```bash
+   python main.py
+   ```
+
+### Generación de Ejecutable
+Para crear una versión portable para Windows:
+```bash
+build.cmd
+```
+El archivo resultante estará disponible en la carpeta `dist/`.
+
+---
+
+## 🔒 Privacidad y Datos
+MiCaja prioriza la soberanía de los datos. Toda la información se almacena localmente en `data/micaja_data.xlsx`. No hay procesos en segundo plano ni envío de información a servidores externos.
+
+*Desarrollado con ❤️ por Leonardo Meza*
